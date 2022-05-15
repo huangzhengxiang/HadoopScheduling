@@ -79,7 +79,7 @@ void ResourceScheduler::schedule() {
             for (int j = 0; j < jobBlock[i]; j++) {
                 jobSize[i] += dataSize[i][j];
             }
-            cout << i <<' '<< jobSize[i] << endl;
+            // cout << i <<' '<< jobSize[i] << endl;
         }
         vector<size_t> idx(jobSize.size());
         iota(idx.begin(),idx.end(),0);
@@ -289,9 +289,8 @@ void ResourceScheduler::validFromBlock() {
 
 		// 3. 模拟完成当前Job的所有数据块
 		//    更新hostCoreTask、hostCoreFinishTime、blockFinished
-
+		break;
 	}
-
 }
 
 void ResourceScheduler::validFromCore() {

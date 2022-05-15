@@ -25,8 +25,7 @@ int main() {
 	rs.outputSolutionFromCore();
 	rs.outputSolutionFromBlock();
 
-	rs.validFromBlock(); // Not necessary && Not Sufficient.
+	// rs.validFromBlock(); // Not necessary && Not Sufficient.
 
 	return 0;
 }
-
