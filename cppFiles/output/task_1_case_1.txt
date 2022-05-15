@@ -1,0 +1,679 @@
+
+Task1 Solution (Block Perspective) of Teaching Assistant:
+
+Job0 obtains 10 cores (speed=10.36) and finishes at time 170.367: 
+	Block0: H0, C7, R1 (time=3.09) 
+	Block1: H0, C0, R1 (time=7.34) 
+	Block2: H0, C4, R1 (time=4.34) 
+	Block3: H0, C8, R1 (time=2.41) 
+	Block4: H0, C4, R2 (time=2.80) 
+	Block5: H0, C5, R1 (time=5.79) 
+	Block6: H0, C7, R2 (time=8.01) 
+	Block7: H0, C1, R1 (time=5.69) 
+	Block8: H0, C2, R1 (time=2.99) 
+	Block9: H0, C6, R1 (time=2.99) 
+	Block10: H0, C4, R3 (time=3.38) 
+	Block11: H0, C3, R1 (time=3.67) 
+	Block12: H0, C2, R2 (time=2.32) 
+	Block13: H0, C6, R2 (time=2.32) 
+	Block14: H0, C5, R2 (time=5.98) 
+	Block15: H0, C6, R3 (time=7.24) 
+	Block16: H0, C8, R2 (time=7.14) 
+	Block17: H0, C2, R3 (time=5.21) 
+	Block18: H0, C9, R1 (time=8.01) 
+	Block19: H0, C4, R4 (time=5.69) 
+	Block20: H0, C1, R2 (time=8.11) 
+	Block21: H0, C3, R2 (time=5.41) 
+	Block22: H0, C4, R5 (time=5.31) 
+	Block23: H0, C1, R3 (time=7.34) 
+	Block24: H0, C8, R3 (time=3.47) 
+	Block25: H0, C4, R6 (time=2.12) 
+	Block26: H0, C7, R3 (time=3.19) 
+	Block27: H0, C9, R2 (time=6.27) 
+	Block28: H0, C1, R4 (time=9.07) 
+	Block29: H0, C8, R4 (time=2.41) 
+	Block30: H0, C5, R3 (time=5.12) 
+	Block31: H0, C2, R4 (time=7.14) 
+	Block32: H0, C6, R4 (time=6.47) 
+	Block33: H0, C2, R5 (time=2.51) 
+
+Job1 obtains 8 cores (speed=11.73) and finishes at time 80.56: 
+	Block0: H0, C8, R5 (time=4.86) 
+	Block1: H0, C5, R4 (time=6.91) 
+	Block2: H0, C9, R3 (time=4.86) 
+	Block3: H0, C0, R2 (time=5.37) 
+	Block4: H0, C1, R5 (time=8.01) 
+	Block5: H0, C8, R6 (time=7.93) 
+	Block6: H0, C3, R3 (time=1.71) 
+	Block7: H0, C4, R7 (time=6.05) 
+	Block8: H0, C0, R3 (time=6.31) 
+	Block9: H0, C6, R5 (time=8.18) 
+	Block10: H0, C8, R7 (time=8.18) 
+	Block11: H0, C9, R4 (time=4.35) 
+	Block12: H0, C3, R4 (time=7.84) 
+
+Job2 obtains 10 cores (speed=5.92) and finishes at time 280.74: 
+	Block0: H0, C8, R8 (time=4.22) 
+	Block1: H0, C2, R6 (time=11.66) 
+	Block2: H0, C1, R6 (time=6.59) 
+	Block3: H0, C5, R5 (time=3.55) 
+	Block4: H0, C8, R9 (time=10.47) 
+	Block5: H0, C0, R4 (time=10.81) 
+	Block6: H0, C6, R6 (time=3.72) 
+	Block7: H0, C6, R7 (time=16.72) 
+	Block8: H0, C5, R6 (time=9.63) 
+	Block9: H0, C2, R7 (time=15.37) 
+	Block10: H0, C9, R5 (time=16.89) 
+	Block11: H0, C3, R5 (time=10.98) 
+	Block12: H0, C2, R8 (time=12.67) 
+	Block13: H0, C0, R5 (time=10.64) 
+	Block14: H0, C6, R8 (time=5.57) 
+	Block15: H0, C7, R4 (time=10.98) 
+	Block16: H0, C4, R8 (time=4.90) 
+	Block17: H0, C2, R9 (time=4.56) 
+	Block18: H0, C0, R6 (time=4.90) 
+	Block19: H0, C4, R9 (time=14.02) 
+	Block20: H0, C0, R7 (time=9.12) 
+	Block21: H0, C1, R7 (time=8.61) 
+	Block22: H0, C7, R5 (time=4.05) 
+	Block23: H0, C7, R6 (time=11.49) 
+	Block24: H0, C3, R6 (time=9.80) 
+	Block25: H0, C9, R6 (time=7.94) 
+	Block26: H0, C8, R10 (time=11.66) 
+	Block27: H0, C8, R11 (time=11.15) 
+	Block28: H0, C6, R9 (time=10.47) 
+	Block29: H0, C0, R8 (time=7.60) 
+
+Job3 obtains 9 cores (speed=12.32) and finishes at time 136.28: 
+	Block0: H0, C8, R12 (time=7.31) 
+	Block1: H0, C1, R8 (time=7.22) 
+	Block2: H0, C5, R7 (time=3.73) 
+	Block3: H0, C9, R7 (time=4.79) 
+	Block4: H0, C7, R7 (time=5.28) 
+	Block5: H0, C3, R7 (time=1.95) 
+	Block6: H0, C1, R9 (time=1.79) 
+	Block7: H0, C0, R9 (time=5.68) 
+	Block8: H0, C6, R10 (time=4.71) 
+	Block9: H0, C0, R10 (time=5.52) 
+	Block10: H0, C1, R10 (time=4.06) 
+	Block11: H0, C9, R8 (time=7.71) 
+	Block12: H0, C4, R10 (time=6.33) 
+	Block13: H0, C4, R11 (time=6.74) 
+	Block14: H0, C9, R9 (time=8.04) 
+	Block15: H0, C8, R13 (time=7.87) 
+	Block16: H0, C8, R14 (time=6.41) 
+	Block17: H0, C7, R8 (time=3.81) 
+	Block18: H0, C3, R8 (time=7.14) 
+	Block19: H0, C3, R9 (time=5.19) 
+	Block20: H0, C1, R11 (time=2.84) 
+	Block21: H0, C7, R9 (time=5.44) 
+	Block22: H0, C4, R12 (time=1.87) 
+	Block23: H0, C6, R11 (time=1.79) 
+	Block24: H0, C1, R12 (time=6.90) 
+	Block25: H0, C9, R10 (time=1.87) 
+	Block26: H0, C6, R12 (time=4.30) 
+
+Job4 obtains 9 cores (speed=4.84) and finishes at time 220.25: 
+	Block0: H0, C3, R10 (time=6.40) 
+	Block1: H0, C8, R15 (time=20.66) 
+	Block2: H0, C9, R11 (time=18.39) 
+	Block3: H0, C2, R10 (time=15.70) 
+	Block4: H0, C5, R8 (time=4.13) 
+	Block5: H0, C3, R11 (time=16.32) 
+	Block6: H0, C7, R10 (time=6.82) 
+	Block7: H0, C3, R12 (time=6.61) 
+	Block8: H0, C0, R11 (time=16.12) 
+	Block9: H0, C8, R16 (time=19.01) 
+	Block10: H0, C6, R13 (time=5.58) 
+	Block11: H0, C1, R13 (time=6.40) 
+	Block12: H0, C8, R17 (time=16.53) 
+	Block13: H0, C7, R11 (time=17.56) 
+	Block14: H0, C2, R11 (time=19.63) 
+	Block15: H0, C2, R12 (time=17.56) 
+	Block16: H0, C9, R12 (time=6.82) 
+
+Job5 obtains 10 cores (speed=10.36) and finishes at time 281.27: 
+	Block0: H0, C7, R12 (time=9.65) 
+	Block1: H0, C1, R14 (time=4.73) 
+	Block2: H0, C8, R18 (time=3.09) 
+	Block3: H0, C1, R15 (time=8.11) 
+	Block4: H0, C4, R13 (time=8.49) 
+	Block5: H0, C5, R9 (time=3.86) 
+	Block6: H0, C6, R14 (time=6.56) 
+	Block7: H0, C6, R15 (time=4.63) 
+	Block8: H0, C3, R13 (time=8.78) 
+	Block9: H0, C2, R13 (time=4.63) 
+	Block10: H0, C6, R16 (time=4.73) 
+	Block11: H0, C8, R19 (time=6.85) 
+	Block12: H0, C1, R16 (time=2.12) 
+	Block13: H0, C9, R13 (time=3.19) 
+	Block14: H0, C6, R17 (time=8.30) 
+	Block15: H0, C9, R14 (time=6.27) 
+	Block16: H0, C2, R14 (time=8.30) 
+	Block17: H0, C0, R12 (time=5.98) 
+	Block18: H0, C9, R15 (time=5.89) 
+	Block19: H0, C8, R20 (time=2.70) 
+	Block20: H0, C9, R16 (time=5.21) 
+	Block21: H0, C3, R14 (time=5.89) 
+	Block22: H0, C5, R10 (time=5.21) 
+	Block23: H0, C5, R11 (time=6.76) 
+	Block24: H0, C6, R18 (time=4.44) 
+	Block25: H0, C7, R13 (time=4.44) 
+	Block26: H0, C2, R15 (time=4.44) 
+	Block27: H0, C4, R14 (time=3.67) 
+	Block28: H0, C9, R17 (time=5.41) 
+	Block29: H0, C9, R18 (time=3.96) 
+	Block30: H0, C2, R16 (time=7.82) 
+	Block31: H0, C5, R12 (time=4.05) 
+	Block32: H0, C9, R19 (time=3.19) 
+	Block33: H0, C2, R17 (time=8.11) 
+	Block34: H0, C0, R13 (time=6.27) 
+	Block35: H0, C3, R15 (time=2.22) 
+	Block36: H0, C3, R16 (time=9.07) 
+	Block37: H0, C6, R19 (time=5.79) 
+	Block38: H0, C9, R20 (time=7.43) 
+	Block39: H0, C7, R14 (time=3.76) 
+	Block40: H0, C9, R21 (time=5.02) 
+	Block41: H0, C5, R13 (time=6.66) 
+	Block42: H0, C6, R20 (time=5.60) 
+	Block43: H0, C5, R14 (time=7.72) 
+	Block44: H0, C2, R18 (time=8.49) 
+	Block45: H0, C4, R15 (time=8.11) 
+	Block46: H0, C1, R17 (time=2.03) 
+	Block47: H0, C1, R18 (time=1.93) 
+	Block48: H0, C3, R17 (time=7.82) 
+	Block49: H0, C5, R15 (time=3.86) 
+
+Job6 obtains 8 cores (speed=4.59) and finishes at time 125.05: 
+	Block0: H0, C3, R18 (time=9.59) 
+	Block1: H0, C8, R21 (time=9.80) 
+	Block2: H0, C5, R16 (time=18.95) 
+	Block3: H0, C6, R21 (time=18.74) 
+	Block4: H0, C8, R22 (time=9.59) 
+	Block5: H0, C2, R19 (time=21.13) 
+	Block6: H0, C4, R16 (time=7.63) 
+	Block7: H0, C2, R20 (time=14.38) 
+	Block8: H0, C1, R19 (time=7.19) 
+	Block9: H0, C0, R14 (time=8.06) 
+
+Job7 obtains 10 cores (speed=8.88) and finishes at time 230.18: 
+	Block0: H0, C6, R22 (time=3.83) 
+	Block1: H0, C9, R22 (time=5.97) 
+	Block2: H0, C9, R23 (time=8.56) 
+	Block3: H0, C4, R17 (time=3.04) 
+	Block4: H0, C0, R15 (time=8.33) 
+	Block5: H0, C9, R24 (time=9.35) 
+	Block6: H0, C3, R19 (time=10.70) 
+	Block7: H0, C2, R21 (time=8.78) 
+	Block8: H0, C8, R23 (time=10.02) 
+	Block9: H0, C5, R17 (time=4.73) 
+	Block10: H0, C1, R20 (time=10.70) 
+	Block11: H0, C5, R18 (time=2.36) 
+	Block12: H0, C4, R18 (time=2.59) 
+	Block13: H0, C4, R19 (time=10.70) 
+	Block14: H0, C4, R20 (time=8.22) 
+	Block15: H0, C9, R25 (time=7.32) 
+	Block16: H0, C0, R16 (time=9.23) 
+	Block17: H0, C7, R15 (time=2.93) 
+	Block18: H0, C7, R16 (time=8.22) 
+	Block19: H0, C0, R17 (time=5.86) 
+	Block20: H0, C8, R24 (time=3.15) 
+	Block21: H0, C5, R19 (time=3.49) 
+	Block22: H0, C0, R18 (time=2.70) 
+	Block23: H0, C7, R17 (time=7.77) 
+	Block24: H0, C9, R26 (time=4.84) 
+	Block25: H0, C5, R20 (time=10.25) 
+	Block26: H0, C4, R21 (time=3.38) 
+	Block27: H0, C2, R22 (time=6.42) 
+	Block28: H0, C1, R21 (time=10.02) 
+	Block29: H0, C2, R23 (time=4.73) 
+	Block30: H0, C3, R20 (time=3.49) 
+	Block31: H0, C1, R22 (time=2.70) 
+	Block32: H0, C2, R24 (time=8.33) 
+	Block33: H0, C6, R23 (time=10.25) 
+	Block34: H0, C0, R19 (time=7.21) 
+
+Job8 obtains 10 cores (speed=10.36) and finishes at time 225.29: 
+	Block0: H0, C0, R20 (time=7.43) 
+	Block1: H0, C4, R22 (time=3.19) 
+	Block2: H0, C0, R21 (time=2.12) 
+	Block3: H0, C3, R21 (time=3.38) 
+	Block4: H0, C0, R22 (time=6.66) 
+	Block5: H0, C7, R18 (time=8.40) 
+	Block6: H0, C0, R23 (time=5.60) 
+	Block7: H0, C4, R23 (time=2.41) 
+	Block8: H0, C4, R24 (time=5.12) 
+	Block9: H0, C5, R21 (time=8.59) 
+	Block10: H0, C4, R25 (time=2.32) 
+	Block11: H0, C2, R25 (time=5.60) 
+	Block12: H0, C6, R24 (time=5.98) 
+	Block13: H0, C3, R22 (time=2.99) 
+	Block14: H0, C4, R26 (time=5.31) 
+	Block15: H0, C4, R27 (time=1.93) 
+	Block16: H0, C2, R26 (time=7.24) 
+	Block17: H0, C7, R19 (time=8.30) 
+	Block18: H0, C6, R25 (time=2.22) 
+	Block19: H0, C7, R20 (time=7.14) 
+	Block20: H0, C5, R22 (time=2.90) 
+	Block21: H0, C7, R21 (time=8.88) 
+	Block22: H0, C8, R25 (time=3.86) 
+	Block23: H0, C9, R27 (time=7.53) 
+	Block24: H0, C6, R26 (time=8.59) 
+	Block25: H0, C7, R22 (time=5.12) 
+	Block26: H0, C4, R28 (time=8.49) 
+	Block27: H0, C7, R23 (time=5.89) 
+	Block28: H0, C8, R26 (time=3.76) 
+	Block29: H0, C0, R24 (time=2.61) 
+	Block30: H0, C2, R27 (time=6.08) 
+	Block31: H0, C6, R27 (time=5.21) 
+	Block32: H0, C1, R23 (time=7.43) 
+	Block33: H0, C5, R23 (time=9.46) 
+	Block34: H0, C0, R25 (time=8.59) 
+	Block35: H0, C6, R28 (time=5.79) 
+	Block36: H0, C6, R29 (time=7.92) 
+	Block37: H0, C1, R24 (time=5.50) 
+	Block38: H0, C7, R24 (time=4.54) 
+	Block39: H0, C0, R26 (time=5.21) 
+
+Job9 obtains 8 cores (speed=15.30) and finishes at time 80.07: 
+	Block0: H0, C4, R29 (time=1.76) 
+	Block1: H0, C3, R23 (time=5.95) 
+	Block2: H0, C1, R25 (time=5.10) 
+	Block3: H0, C9, R28 (time=5.49) 
+	Block4: H0, C3, R24 (time=4.97) 
+	Block5: H0, C8, R27 (time=5.16) 
+	Block6: H0, C7, R25 (time=4.64) 
+	Block7: H0, C0, R27 (time=3.01) 
+	Block8: H0, C9, R29 (time=2.29) 
+	Block9: H0, C0, R28 (time=3.92) 
+	Block10: H0, C4, R30 (time=5.29) 
+	Block11: H0, C8, R28 (time=2.35) 
+	Block12: H0, C7, R26 (time=5.03) 
+	Block13: H0, C0, R29 (time=5.62) 
+	Block14: H0, C8, R29 (time=5.95) 
+	Block15: H0, C4, R31 (time=3.46) 
+	Block16: H0, C0, R30 (time=2.81) 
+	Block17: H0, C4, R32 (time=3.86) 
+	Block18: H0, C6, R30 (time=3.40) 
+
+Job10 obtains 10 cores (speed=9.99) and finishes at time 284.08: 
+	Block0: H0, C0, R31 (time=7.21) 
+	Block1: H0, C5, R24 (time=5.71) 
+	Block2: H0, C6, R31 (time=4.50) 
+	Block3: H0, C7, R27 (time=3.00) 
+	Block4: H0, C7, R28 (time=4.20) 
+	Block5: H0, C1, R26 (time=7.81) 
+	Block6: H0, C1, R27 (time=9.51) 
+	Block7: H0, C2, R28 (time=7.41) 
+	Block8: H0, C2, R29 (time=9.41) 
+	Block9: H0, C6, R32 (time=5.41) 
+	Block10: H0, C1, R28 (time=4.40) 
+	Block11: H0, C9, R30 (time=6.41) 
+	Block12: H0, C5, R25 (time=5.01) 
+	Block13: H0, C2, R30 (time=7.31) 
+	Block14: H0, C5, R26 (time=5.61) 
+	Block15: H0, C2, R31 (time=4.10) 
+	Block16: H0, C4, R33 (time=7.61) 
+	Block17: H0, C2, R32 (time=9.51) 
+	Block18: H0, C9, R31 (time=4.00) 
+	Block19: H0, C3, R25 (time=9.11) 
+	Block20: H0, C3, R26 (time=5.51) 
+	Block21: H0, C5, R27 (time=3.40) 
+	Block22: H0, C8, R30 (time=4.90) 
+	Block23: H0, C8, R31 (time=7.91) 
+	Block24: H0, C2, R33 (time=6.11) 
+	Block25: H0, C1, R29 (time=5.51) 
+	Block26: H0, C5, R28 (time=9.11) 
+	Block27: H0, C5, R29 (time=2.70) 
+	Block28: H0, C0, R32 (time=2.20) 
+	Block29: H0, C4, R34 (time=5.01) 
+	Block30: H0, C3, R27 (time=5.61) 
+	Block31: H0, C8, R32 (time=6.21) 
+	Block32: H0, C1, R30 (time=8.71) 
+	Block33: H0, C4, R35 (time=7.71) 
+	Block34: H0, C4, R36 (time=3.90) 
+	Block35: H0, C3, R28 (time=6.81) 
+	Block36: H0, C5, R30 (time=2.90) 
+	Block37: H0, C8, R33 (time=8.11) 
+	Block38: H0, C0, R33 (time=6.91) 
+	Block39: H0, C1, R31 (time=5.21) 
+	Block40: H0, C5, R31 (time=7.01) 
+	Block41: H0, C2, R34 (time=5.31) 
+	Block42: H0, C7, R29 (time=7.71) 
+	Block43: H0, C8, R34 (time=9.81) 
+	Block44: H0, C3, R29 (time=3.70) 
+	Block45: H0, C3, R30 (time=3.50) 
+	Block46: H0, C3, R31 (time=5.41) 
+
+Job11 obtains 10 cores (speed=7.77) and finishes at time 204.76: 
+	Block0: H0, C2, R35 (time=3.60) 
+	Block1: H0, C0, R34 (time=8.11) 
+	Block2: H0, C2, R36 (time=5.41) 
+	Block3: H0, C5, R32 (time=10.68) 
+	Block4: H0, C1, R32 (time=3.35) 
+	Block5: H0, C8, R35 (time=2.83) 
+	Block6: H0, C0, R35 (time=6.95) 
+	Block7: H0, C9, R32 (time=5.53) 
+	Block8: H0, C5, R33 (time=7.34) 
+	Block9: H0, C4, R37 (time=4.63) 
+	Block10: H0, C0, R36 (time=3.09) 
+	Block11: H0, C8, R36 (time=8.11) 
+	Block12: H0, C9, R33 (time=11.84) 
+	Block13: H0, C5, R34 (time=12.36) 
+	Block14: H0, C1, R33 (time=8.62) 
+	Block15: H0, C9, R34 (time=10.81) 
+	Block16: H0, C8, R37 (time=12.23) 
+	Block17: H0, C7, R30 (time=3.35) 
+	Block18: H0, C6, R33 (time=2.57) 
+	Block19: H0, C7, R31 (time=9.52) 
+	Block20: H0, C1, R34 (time=6.44) 
+	Block21: H0, C0, R37 (time=8.24) 
+	Block22: H0, C4, R38 (time=10.55) 
+	Block23: H0, C7, R32 (time=5.41) 
+	Block24: H0, C3, R32 (time=3.60) 
+	Block25: H0, C2, R37 (time=3.73) 
+	Block26: H0, C1, R35 (time=11.97) 
+	Block27: H0, C9, R35 (time=7.98) 
+	Block28: H0, C8, R38 (time=5.92) 
+
+Job12 obtains 10 cores (speed=9.62) and finishes at time 133.06: 
+	Block0: H0, C4, R39 (time=4.78) 
+	Block1: H0, C6, R34 (time=8.11) 
+	Block2: H0, C0, R38 (time=4.89) 
+	Block3: H0, C7, R33 (time=8.32) 
+	Block4: H0, C3, R33 (time=10.08) 
+	Block5: H0, C3, R34 (time=4.99) 
+	Block6: H0, C3, R35 (time=3.95) 
+	Block7: H0, C1, R36 (time=6.13) 
+	Block8: H0, C0, R39 (time=6.44) 
+	Block9: H0, C2, R38 (time=7.80) 
+	Block10: H0, C3, R36 (time=8.84) 
+	Block11: H0, C4, R40 (time=10.29) 
+	Block12: H0, C2, R39 (time=3.85) 
+	Block13: H0, C5, R35 (time=2.49) 
+	Block14: H0, C9, R36 (time=10.40) 
+	Block15: H0, C2, R40 (time=3.74) 
+	Block16: H0, C7, R34 (time=10.40) 
+	Block17: H0, C8, R39 (time=6.24) 
+	Block18: H0, C4, R41 (time=2.49) 
+	Block19: H0, C5, R36 (time=5.61) 
+	Block20: H0, C2, R41 (time=3.22) 
+
+Job13 obtains 10 cores (speed=8.51) and finishes at time 284.02: 
+	Block0: H0, C8, R40 (time=9.52) 
+	Block1: H0, C2, R42 (time=8.81) 
+	Block2: H0, C5, R37 (time=8.34) 
+	Block3: H0, C4, R42 (time=7.99) 
+	Block4: H0, C0, R40 (time=4.00) 
+	Block5: H0, C8, R41 (time=3.76) 
+	Block6: H0, C0, R41 (time=10.69) 
+	Block7: H0, C3, R37 (time=4.47) 
+	Block8: H0, C2, R43 (time=8.34) 
+	Block9: H0, C7, R35 (time=10.34) 
+	Block10: H0, C3, R38 (time=9.87) 
+	Block11: H0, C3, R39 (time=3.64) 
+	Block12: H0, C7, R36 (time=4.35) 
+	Block13: H0, C9, R37 (time=10.81) 
+	Block14: H0, C5, R38 (time=5.05) 
+	Block15: H0, C3, R40 (time=5.88) 
+	Block16: H0, C8, R42 (time=9.28) 
+	Block17: H0, C7, R37 (time=11.16) 
+	Block18: H0, C3, R41 (time=4.00) 
+	Block19: H0, C1, R37 (time=4.00) 
+	Block20: H0, C2, R44 (time=7.17) 
+	Block21: H0, C0, R42 (time=3.06) 
+	Block22: H0, C8, R43 (time=2.70) 
+	Block23: H0, C8, R44 (time=8.34) 
+	Block24: H0, C0, R43 (time=2.82) 
+	Block25: H0, C3, R42 (time=10.11) 
+	Block26: H0, C0, R44 (time=10.11) 
+	Block27: H0, C7, R38 (time=8.23) 
+	Block28: H0, C3, R43 (time=7.40) 
+	Block29: H0, C6, R35 (time=3.29) 
+	Block30: H0, C8, R45 (time=5.64) 
+	Block31: H0, C9, R38 (time=2.82) 
+	Block32: H0, C8, R46 (time=11.28) 
+	Block33: H0, C9, R39 (time=10.11) 
+	Block34: H0, C6, R36 (time=6.23) 
+	Block35: H0, C5, R39 (time=10.69) 
+	Block36: H0, C6, R37 (time=6.70) 
+	Block37: H0, C5, R40 (time=5.64) 
+	Block38: H0, C1, R38 (time=6.23) 
+	Block39: H0, C6, R38 (time=11.16) 
+
+Job14 obtains 5 cores (speed=19.44) and finishes at time 34.83: 
+	Block0: H0, C5, R41 (time=1.85) 
+	Block1: H0, C2, R45 (time=4.32) 
+	Block2: H0, C3, R44 (time=1.80) 
+	Block3: H0, C6, R39 (time=1.08) 
+	Block4: H0, C2, R46 (time=1.49) 
+	Block5: H0, C6, R40 (time=2.78) 
+	Block6: H0, C9, R40 (time=4.48) 
+	Block7: H0, C5, R42 (time=4.94) 
+	Block8: H0, C2, R47 (time=4.78) 
+	Block9: H0, C3, R45 (time=3.65) 
+	Block10: H0, C6, R41 (time=3.65) 
+
+Job15 obtains 8 cores (speed=9.69) and finishes at time 90.92: 
+	Block0: H0, C1, R39 (time=8.67) 
+	Block1: H0, C4, R43 (time=2.79) 
+	Block2: H0, C2, R48 (time=9.49) 
+	Block3: H0, C8, R47 (time=4.23) 
+	Block4: H0, C5, R43 (time=5.47) 
+	Block5: H0, C1, R40 (time=10.01) 
+	Block6: H0, C1, R41 (time=2.99) 
+	Block7: H0, C1, R42 (time=8.88) 
+	Block8: H0, C6, R42 (time=7.84) 
+	Block9: H0, C0, R45 (time=7.22) 
+	Block10: H0, C4, R44 (time=3.92) 
+	Block11: H0, C3, R46 (time=3.61) 
+	Block12: H0, C2, R49 (time=6.60) 
+	Block13: H0, C2, R50 (time=9.18) 
+
+Job16 obtains 9 cores (speed=10.12) and finishes at time 215.51: 
+	Block0: H0, C4, R45 (time=2.67) 
+	Block1: H0, C4, R46 (time=5.73) 
+	Block2: H0, C6, R43 (time=9.78) 
+	Block3: H0, C4, R47 (time=8.50) 
+	Block4: H0, C3, R47 (time=4.74) 
+	Block5: H0, C8, R48 (time=2.08) 
+	Block6: H0, C0, R46 (time=2.47) 
+	Block7: H0, C8, R49 (time=8.60) 
+	Block8: H0, C5, R44 (time=8.79) 
+	Block9: H0, C4, R48 (time=8.50) 
+	Block10: H0, C6, R44 (time=8.89) 
+	Block11: H0, C9, R41 (time=4.74) 
+	Block12: H0, C1, R43 (time=9.29) 
+	Block13: H0, C8, R50 (time=7.11) 
+	Block14: H0, C3, R48 (time=6.32) 
+	Block15: H0, C0, R47 (time=4.45) 
+	Block16: H0, C3, R49 (time=9.78) 
+	Block17: H0, C9, R42 (time=6.82) 
+	Block18: H0, C9, R43 (time=8.50) 
+	Block19: H0, C9, R44 (time=9.58) 
+	Block20: H0, C3, R50 (time=3.26) 
+	Block21: H0, C1, R44 (time=2.17) 
+	Block22: H0, C2, R51 (time=7.81) 
+	Block23: H0, C3, R51 (time=4.84) 
+	Block24: H0, C9, R45 (time=7.91) 
+	Block25: H0, C8, R51 (time=2.37) 
+	Block26: H0, C0, R48 (time=3.06) 
+	Block27: H0, C4, R49 (time=3.16) 
+	Block28: H0, C1, R45 (time=1.98) 
+	Block29: H0, C3, R52 (time=8.99) 
+	Block30: H0, C9, R46 (time=4.64) 
+	Block31: H0, C9, R47 (time=4.84) 
+	Block32: H0, C0, R49 (time=3.85) 
+	Block33: H0, C4, R50 (time=6.42) 
+	Block34: H0, C5, R45 (time=9.78) 
+	Block35: H0, C5, R46 (time=3.06) 
+
+Job17 obtains 7 cores (speed=7.54) and finishes at time 103.85: 
+	Block0: H0, C9, R48 (time=2.65) 
+	Block1: H0, C8, R52 (time=8.09) 
+	Block2: H0, C4, R51 (time=4.38) 
+	Block3: H0, C0, R50 (time=6.50) 
+	Block4: H0, C4, R52 (time=11.94) 
+	Block5: H0, C5, R47 (time=10.34) 
+	Block6: H0, C1, R46 (time=9.28) 
+	Block7: H0, C9, R49 (time=9.95) 
+	Block8: H0, C8, R53 (time=6.90) 
+	Block9: H0, C8, R54 (time=7.96) 
+	Block10: H0, C2, R52 (time=12.86) 
+	Block11: H0, C9, R50 (time=13.00) 
+
+Job18 obtains 10 cores (speed=7.40) and finishes at time 247.16: 
+	Block0: H0, C8, R55 (time=7.30) 
+	Block1: H0, C0, R51 (time=10.00) 
+	Block2: H0, C3, R53 (time=3.38) 
+	Block3: H0, C4, R53 (time=9.32) 
+	Block4: H0, C0, R52 (time=13.24) 
+	Block5: H0, C5, R48 (time=10.54) 
+	Block6: H0, C1, R47 (time=8.78) 
+	Block7: H0, C7, R39 (time=13.11) 
+	Block8: H0, C5, R49 (time=2.70) 
+	Block9: H0, C5, R50 (time=5.81) 
+	Block10: H0, C9, R51 (time=12.43) 
+	Block11: H0, C8, R56 (time=6.76) 
+	Block12: H0, C3, R54 (time=4.05) 
+	Block13: H0, C0, R53 (time=9.32) 
+	Block14: H0, C9, R52 (time=9.46) 
+	Block15: H0, C8, R57 (time=4.46) 
+	Block16: H0, C4, R54 (time=7.57) 
+	Block17: H0, C5, R51 (time=4.19) 
+	Block18: H0, C6, R45 (time=2.84) 
+	Block19: H0, C6, R46 (time=4.19) 
+	Block20: H0, C7, R40 (time=9.73) 
+	Block21: H0, C4, R55 (time=6.89) 
+	Block22: H0, C6, R47 (time=3.51) 
+	Block23: H0, C2, R53 (time=2.70) 
+	Block24: H0, C4, R56 (time=8.38) 
+	Block25: H0, C5, R52 (time=5.81) 
+	Block26: H0, C3, R55 (time=5.54) 
+	Block27: H0, C1, R48 (time=12.84) 
+	Block28: H0, C2, R54 (time=4.73) 
+	Block29: H0, C1, R49 (time=6.76) 
+	Block30: H0, C8, R58 (time=9.46) 
+	Block31: H0, C2, R55 (time=3.51) 
+	Block32: H0, C7, R41 (time=7.43) 
+	Block33: H0, C2, R56 (time=10.41) 
+
+Job19 obtains 8 cores (speed=6.63) and finishes at time 71.79: 
+	Block0: H0, C0, R54 (time=8.45) 
+	Block1: H0, C9, R53 (time=4.07) 
+	Block2: H0, C6, R48 (time=10.11) 
+	Block3: H0, C3, R56 (time=6.79) 
+	Block4: H0, C2, R57 (time=9.65) 
+	Block5: H0, C5, R53 (time=6.33) 
+	Block6: H0, C8, R59 (time=10.11) 
+	Block7: H0, C2, R58 (time=3.77) 
+	Block8: H0, C4, R57 (time=8.30) 
+	Block9: H0, C8, R60 (time=4.22) 
+
+The maximum finish time: 284.08
+The sum of response time: 3500.05
+
+
+Task1 Solution (Core Perspective) of Teaching Assistant:
+
+Host0 finishes at time 694.00:
+
+	Core0 has 3 tasks and finishes at time 159.00:
+		J04, B08, runTime 000.0 to 053.0
+		J09, B12, runTime 053.0 to 092.0
+		J03, B00, runTime 092.0 to 159.0
+
+	Core1 has 10 tasks and finishes at time 694.0:
+		J18, B28, runTime 000.0 to 097.0
+		J02, B23, runTime 097.0 to 156.0
+		J02, B06, runTime 156.0 to 249.0
+		J17, B01, runTime 249.0 to 297.0
+		J18, B06, runTime 297.0 to 305.0
+		J18, B18, runTime 305.0 to 398.0
+		J00, B02, runTime 398.0 to 498.0
+		J12, B15, runTime 498.0 to 581.0
+		J00, B27, runTime 581.0 to 657.0
+		J02, B27, runTime 657.0 to 694.0
+
+	Core2 has 8 tasks and finishes at time 462.0:
+		J18, B07, runTime 000.0 to 029.0
+		J11, B20, runTime 029.0 to 060.0
+		J09, B15, runTime 060.0 to 119.0
+		J09, B10, runTime 119.0 to 160.0
+		J00, B17, runTime 160.0 to 223.0
+		J15, B11, runTime 223.0 to 316.0
+		J01, B08, runTime 316.0 to 415.0
+		J06, B04, runTime 415.0 to 462.0
+
+	Core3 has 9 tasks and finishes at time 321.0:
+		J09, B12, runTime 000.0 to 064.0
+		J15, B01, runTime 064.0 to 086.0
+		J15, B05, runTime 086.0 to 115.0
+		J14, B08, runTime 115.0 to 121.0
+		J04, B07, runTime 121.0 to 184.0
+		J01, B00, runTime 184.0 to 234.0
+		J09, B07, runTime 234.0 to 258.0
+		J10, B45, runTime 258.0 to 284.0
+		J10, B44, runTime 284.0 to 321.0
+
+	Core4 has 8 tasks and finishes at time 477.0:
+		J18, B17, runTime 000.0 to 037.0
+		J14, B04, runTime 037.0 to 129.0
+		J09, B02, runTime 129.0 to 135.0
+		J17, B08, runTime 135.0 to 173.0
+		J03, B17, runTime 173.0 to 244.0
+		J08, B08, runTime 244.0 to 326.0
+		J05, B02, runTime 326.0 to 400.0
+		J12, B04, runTime 400.0 to 477.0
+
+	Core5 has 7 tasks and finishes at time 299.0:
+		J16, B12, runTime 000.0 to 050.0
+		J00, B02, runTime 050.0 to 070.0
+		J03, B22, runTime 070.0 to 112.0
+		J09, B02, runTime 112.0 to 178.0
+		J05, B35, runTime 178.0 to 195.0
+		J10, B17, runTime 195.0 to 205.0
+		J04, B03, runTime 205.0 to 299.0
+
+	Core6 has 5 tasks and finishes at time 319.0:
+		J09, B14, runTime 000.0 to 096.0
+		J13, B29, runTime 096.0 to 158.0
+		J12, B13, runTime 158.0 to 217.0
+		J11, B23, runTime 217.0 to 244.0
+		J10, B35, runTime 244.0 to 319.0
+
+	Core7 has 10 tasks and finishes at time 575.0:
+		J10, B05, runTime 000.0 to 083.0
+		J11, B09, runTime 083.0 to 148.0
+		J14, B00, runTime 148.0 to 151.0
+		J15, B08, runTime 151.0 to 226.0
+		J12, B04, runTime 226.0 to 249.0
+		J07, B17, runTime 249.0 to 339.0
+		J05, B45, runTime 339.0 to 434.0
+		J10, B34, runTime 434.0 to 489.0
+		J01, B11, runTime 489.0 to 562.0
+		J19, B08, runTime 562.0 to 575.0
+
+	Core8 has 3 tasks and finishes at time 163.0:
+		J07, B13, runTime 000.0 to 016.0
+		J08, B23, runTime 016.0 to 076.0
+		J14, B01, runTime 076.0 to 163.0
+
+	Core9 has 10 tasks and finishes at time 449.0:
+		J18, B29, runTime 000.0 to 007.0
+		J06, B00, runTime 007.0 to 075.0
+		J12, B10, runTime 075.0 to 108.0
+		J16, B14, runTime 108.0 to 156.0
+		J01, B05, runTime 156.0 to 179.0
+		J11, B27, runTime 179.0 to 263.0
+		J08, B03, runTime 263.0 to 346.0
+		J18, B20, runTime 346.0 to 367.0
+		J11, B21, runTime 367.0 to 424.0
+		J10, B42, runTime 424.0 to 449.0
+
+
+
+The maximum finish time of hosts: 694.0
+The total efficacious running time: 3918.0
+Utilization rate: 0.6
+
