@@ -5,8 +5,24 @@
 #define mfor(i,a,b) for(int i=(a);i>(b);--i)
 #define mmfor(i,a,b) for(int i=(a);i>=(b);--i)
 
-ResourceScheduler::ResourceScheduler(int tasktype, int caseID) {
+struct cmp{
+    double amt;
+    size_t idx;
+};
+bool operator<(const cmp &a,const cmp &b)
+{
+    return a.amt < b.amt;
+    //idle ones first!
+}
+bool operator>(const cmp &a,const cmp &b)
+{
+    return a.amt > b.amt;
+    //idle ones first!
+}
+
+ResourceScheduler::ResourceScheduler(int scheduler,int tasktype, int caseID) {
 	taskType = tasktype;
+	Scheduler = scheduler;
 	string filePath = "../input/task" + to_string(taskType) + "_case" + to_string(caseID) + ".txt";
 	freopen(filePath.c_str(), "r", stdin);
 	cin >> numJob >> numHost >> alpha;
@@ -56,49 +72,95 @@ ResourceScheduler::ResourceScheduler(int tasktype, int caseID) {
 }
 
 void ResourceScheduler::schedule() {
-	// 以下代码是为了测试，不是合理方案
+	    if(Scheduler==1){
+        vector<double> jobSize;
+        jobSize.resize(numJob,0);
+        for(int i=0;i<numJob;++i){
+            for (int j = 0; j < jobBlock[i]; j++) {
+                jobSize[i] += dataSize[i][j];
+            }
+            cout << i <<' '<< jobSize[i] << endl;
+        }
+        vector<size_t> idx(jobSize.size());
+        iota(idx.begin(),idx.end(),0);
+        sort(idx.begin(),idx.end(),[&jobSize](size_t i1, size_t i2)->bool { return jobSize[i1] > jobSize[i2]; });
+        //idx is the sorted index of jobSize, from big to small!
 
-	vector<vector<int>> hostCoreBlock(numHost);
-	for (int i = 0; i < numHost; i++)
-		hostCoreBlock[i].resize(hostCore[i], 0);
+        vector<vector<int>> hostCoreBlock;
+        hostCoreBlock.resize(numHost);
+        for (int i = 0; i < numHost; i++)
+            hostCoreBlock[i].resize(hostCore[i], 0);
+        //hostCoreBlock is [hid,cid,the rank's block on the core]!
 
-	int hid, cid; // hostId, coreId
-	for (int i = 0; i < numJob; i++) {
-		set<pair<int, int>> allocatedJobCore;
-		double jobDataSize = 0.0;
-		for (int j = 0; j < jobBlock[i]; j++) {
-			jobDataSize += dataSize[i][j];
-			if (g(allocatedJobCore.size() + 1) < 0) { // 再加新核导致速度为负
-				set<pair<int,int>>::const_iterator position(allocatedJobCore.begin());
-				advance(position, rand() % allocatedJobCore.size()); // 随机取一个已分配核计算当前数据块
-				hid = position->first;
-				cid = position->second;
-			}
-			else {
-				hid = rand() % numHost;
-				cid = rand() % hostCore[hid];
-				allocatedJobCore.insert({ hid,cid });
-			}
-			runLoc[i][j] = make_tuple(hid, cid, ++hostCoreBlock[hid][cid]); // rank 从1开始
-		}
+        //task 1
+        for(int i=0;i < numHost;++i){
+            priority_queue<cmp,vector<cmp>,greater<cmp>> CoreQueue;
+            for(int j=0;j < hostCore[i];++j){
+                cmp tem;
+                tem.amt=0.0,tem.idx=j;
+                CoreQueue.push(tem);
+            }
+            for(int j=0;j < numJob;++j){
+                cmp coreSelection = CoreQueue.top();
+                CoreQueue.pop();
+                for(int k=0; k < jobBlock[idx[j]];++k){
+                    double starttime = coreSelection.amt;
+                    double endtime = coreSelection.amt + dataSize[idx[j]][k] / Sc[idx[j]] / g(1);
+                    coreSelection.amt = endtime;
+                    hostCoreTask[i][coreSelection.idx].push_back(make_tuple(idx[j],k,starttime,endtime));
+                    runLoc[idx[j]][k] = make_tuple(i,coreSelection.idx,++hostCoreBlock[i][coreSelection.idx]);
+                }
+                jobFinishTime[idx[j]] = coreSelection.amt;
+                jobCore[idx[j]] = 1;
+                hostCoreFinishTime[i][coreSelection.idx] = coreSelection.amt;
+                CoreQueue.push(coreSelection);
+            }
+        }
+    }else if(Scheduler==0)
+    {   // 以下代码是为了测试，不是合理方案
 
-		jobFinishTime[i] = jobDataSize / (Sc[i] * g(allocatedJobCore.size()));// why is this?
-		jobCore[i] = allocatedJobCore.size();
-	}
+        vector<vector<int>> hostCoreBlock(numHost);
+        for (int i = 0; i < numHost; i++)
+            hostCoreBlock[i].resize(hostCore[i], 0);
 
-	for (int i = 0; i < numHost; i++) {
-		for (int j = 0; j < hostCore[i]; j++) {
-			int numTask = rand() % 10 + 1;
-			hostCoreTask[i][j].resize(numTask);
-			for (int k = 0; k < numTask; k++) {
-				int jid = rand() % numJob;
-				int bid = rand() % jobBlock[jid];
-				int endTime = hostCoreFinishTime[i][j] + rand() % 100 + 1;
-				hostCoreTask[i][j][k] = make_tuple(jid, bid, hostCoreFinishTime[i][j], endTime);
-				hostCoreFinishTime[i][j] = endTime;
-			}
-		}
-	}
+        int hid, cid; // hostId, coreId
+        for (int i = 0; i < numJob; i++) {
+            set<pair<int, int>> allocatedJobCore;
+            double jobDataSize = 0.0;
+            for (int j = 0; j < jobBlock[i]; j++) {
+                jobDataSize += dataSize[i][j];
+                if (g(allocatedJobCore.size() + 1) < 0) { // 再加新核导致速度为负
+                    set<pair<int,int>>::const_iterator position(allocatedJobCore.begin());
+                    advance(position, rand() % allocatedJobCore.size()); // 随机取一个已分配核计算当前数据块
+                    hid = position->first;
+                    cid = position->second;
+                }
+                else {
+                    hid = rand() % numHost;
+                    cid = rand() % hostCore[hid];
+                    allocatedJobCore.insert({ hid,cid });
+                }
+                runLoc[i][j] = make_tuple(hid, cid, ++hostCoreBlock[hid][cid]); // rank 从1开始
+            }
+
+            jobFinishTime[i] = jobDataSize / (Sc[i] * g(allocatedJobCore.size()));// why is this?
+            jobCore[i] = allocatedJobCore.size();
+        }
+
+        for (int i = 0; i < numHost; i++) {
+            for (int j = 0; j < hostCore[i]; j++) {
+                int numTask = rand() % 10 + 1;
+                hostCoreTask[i][j].resize(numTask);
+                for (int k = 0; k < numTask; k++) {
+                    int jid = rand() % numJob;
+                    int bid = rand() % jobBlock[jid];
+                    int endTime = hostCoreFinishTime[i][j] + rand() % 100 + 1;
+                    hostCoreTask[i][j][k] = make_tuple(jid, bid, hostCoreFinishTime[i][j], endTime);
+                    hostCoreFinishTime[i][j] = endTime;
+                }
+            }
+        }
+    }
 }
 
 // 以数据块的视角打印解决方案
@@ -222,7 +284,7 @@ void ResourceScheduler::validFromBlock() {
 		// 1. 找最短运行时间的核, 尝试调度这个核上的下一个块对应的Job的所有数据块
 		//    判断并记录需要传输的块到transferMap中
 
-		// 2. 找最大的 这个job的 每个数据块所调度的核上完成上一个别的job数据块的结束时间, 
+		// 2. 找最大的 这个job的 每个数据块所调度的核上完成上一个别的job数据块的结束时间,
 		//    将这个时间作为当前Job的起始时间jobStartTime
 
 		// 3. 模拟完成当前Job的所有数据块
