@@ -72,19 +72,20 @@ ResourceScheduler::ResourceScheduler(int scheduler,int tasktype, int caseID) {
 }
 
 void ResourceScheduler::schedule() {
-	    if(Scheduler==1){
-        vector<double> jobSize;
-        jobSize.resize(numJob,0);
+    if(Scheduler==1){
+        vector<double> jobTime;
+        jobTime.resize(numJob,0);
         for(int i=0;i<numJob;++i){
             for (int j = 0; j < jobBlock[i]; j++) {
-                jobSize[i] += dataSize[i][j];
+                jobTime[i] += dataSize[i][j];
             }
-            // cout << i <<' '<< jobSize[i] << endl;
+            // cout << i <<' '<< jobTime[i] << endl;
+            jobTime[i] /= Sc[i];
         }
-        vector<size_t> idx(jobSize.size());
+        vector<size_t> idx(jobTime.size());
         iota(idx.begin(),idx.end(),0);
-        sort(idx.begin(),idx.end(),[&jobSize](size_t i1, size_t i2)->bool { return jobSize[i1] > jobSize[i2]; });
-        //idx is the sorted index of jobSize, from big to small!
+        sort(idx.begin(),idx.end(),[&jobTime](size_t i1, size_t i2)->bool { return jobTime[i1] > jobTime[i2]; });
+        //idx is the sorted index of jobTime, from big to small!
 
         vector<vector<int>> hostCoreBlock;
         hostCoreBlock.resize(numHost);
@@ -117,7 +118,7 @@ void ResourceScheduler::schedule() {
             }
         }
     }else if(Scheduler==0)
-    {   // ÒÔÏÂ´úÂëÊÇÎªÁË²âÊÔ£¬²»ÊÇºÏÀí·½°¸
+    {   // ä»¥ä¸‹ä»£ç æ˜¯ä¸ºäº†æµ‹è¯•ï¼Œä¸æ˜¯åˆç†æ–¹æ¡ˆ
 
         vector<vector<int>> hostCoreBlock(numHost);
         for (int i = 0; i < numHost; i++)
@@ -129,9 +130,9 @@ void ResourceScheduler::schedule() {
             double jobDataSize = 0.0;
             for (int j = 0; j < jobBlock[i]; j++) {
                 jobDataSize += dataSize[i][j];
-                if (g(allocatedJobCore.size() + 1) < 0) { // ÔÙ¼ÓĞÂºËµ¼ÖÂËÙ¶ÈÎª¸º
+                if (g(allocatedJobCore.size() + 1) < 0) { // å†åŠ æ–°æ ¸å¯¼è‡´é€Ÿåº¦ä¸ºè´Ÿ
                     set<pair<int,int>>::const_iterator position(allocatedJobCore.begin());
-                    advance(position, rand() % allocatedJobCore.size()); // Ëæ»úÈ¡Ò»¸öÒÑ·ÖÅäºË¼ÆËãµ±Ç°Êı¾İ¿é
+                    advance(position, rand() % allocatedJobCore.size()); // éšæœºå–ä¸€ä¸ªå·²åˆ†é…æ ¸è®¡ç®—å½“å‰æ•°æ®å—
                     hid = position->first;
                     cid = position->second;
                 }
@@ -140,7 +141,7 @@ void ResourceScheduler::schedule() {
                     cid = rand() % hostCore[hid];
                     allocatedJobCore.insert({ hid,cid });
                 }
-                runLoc[i][j] = make_tuple(hid, cid, ++hostCoreBlock[hid][cid]); // rank ´Ó1¿ªÊ¼
+                runLoc[i][j] = make_tuple(hid, cid, ++hostCoreBlock[hid][cid]); // rank ä»1å¼€å§‹
             }
 
             jobFinishTime[i] = jobDataSize / (Sc[i] * g(allocatedJobCore.size()));// why is this?
@@ -163,7 +164,7 @@ void ResourceScheduler::schedule() {
     }
 }
 
-// ÒÔÊı¾İ¿éµÄÊÓ½Ç´òÓ¡½â¾ö·½°¸
+// ä»¥æ•°æ®å—çš„è§†è§’æ‰“å°è§£å†³æ–¹æ¡ˆ
 void ResourceScheduler::outputSolutionFromBlock() {
 	cout << "\nTask" << taskType << " Solution (Block Perspective) of Teaching Assistant:\n\n";
 	for (int i = 0; i < numJob; i++) {
@@ -179,7 +180,7 @@ void ResourceScheduler::outputSolutionFromBlock() {
 	cout << "The sum of response time: " << accumulate(jobFinishTime.begin(), jobFinishTime.end(), 0.0) << "\n\n";
 }
 
-// ÒÔºËµÄÊÓ½Ç´òÓ¡½â¾ö·½°¸
+// ä»¥æ ¸çš„è§†è§’æ‰“å°è§£å†³æ–¹æ¡ˆ
 void ResourceScheduler::outputSolutionFromCore() {
 	cout << "\nTask" << taskType << " Solution (Core Perspective) of Teaching Assistant:\n\n";
 	double maxHostTime = 0, totalRunningTime = 0.0;
@@ -202,18 +203,18 @@ void ResourceScheduler::outputSolutionFromCore() {
 	cout << "Utilization rate: " << totalRunningTime / accumulate(hostCore.begin(), hostCore.end(), 0.0) / maxHostTime << "\n\n";
 }
 
-// ´ÓÊı¾İ¿éµÄÊÓ½Ç½øĞĞÑéÖ¤
+// ä»æ•°æ®å—çš„è§†è§’è¿›è¡ŒéªŒè¯
 void ResourceScheduler::validFromBlock() {
 
-	// 1. ÑéÖ¤jobFinishTime: "jobFinishTimeµÄºÍ" Ó¦¸ÃĞ¡ÓÚ "ÒÀ´ÎÖ´ĞĞÃ¿¸öjob, ËùÓĞÊı¾İ¿éÔÚ¸÷×Ô³õÊ¼ËùÔÚÖ÷»úµÄÍ¬Ò»¸öºËÉÏÖ±½ÓÔËĞĞµÄÊ±¼äµÄºÍ"
+	// 1. éªŒè¯jobFinishTime: "jobFinishTimeçš„å’Œ" åº”è¯¥å°äº "ä¾æ¬¡æ‰§è¡Œæ¯ä¸ªjob, æ‰€æœ‰æ•°æ®å—åœ¨å„è‡ªåˆå§‹æ‰€åœ¨ä¸»æœºçš„åŒä¸€ä¸ªæ ¸ä¸Šç›´æ¥è¿è¡Œçš„æ—¶é—´çš„å’Œ"
 	// double actualTime = accumulate(jobFinishTime.begin(), jobFinishTime.end(), 0.0);
 	double actualTime = 0.0;
 	for (int i = 0; i < numJob; i++) {
 		actualTime = max(actualTime, jobFinishTime[i]);
 	}
 	double maxRunningTime = 0.0;
-	vector<unordered_set<int>> jobInitLocSet(numJob); // Ã¿¸öjob³õÊ¼·ÖÉ¢ÔÚÄÄ¼¸¸öÖ÷»úÉÏ
-	vector<int> jobTotalSize(numJob, 0); // Ã¿¸öjobËùÓĞÊı¾İ¿é´óĞ¡Ö®ºÍ
+	vector<unordered_set<int>> jobInitLocSet(numJob); // æ¯ä¸ªjobåˆå§‹åˆ†æ•£åœ¨å“ªå‡ ä¸ªä¸»æœºä¸Š
+	vector<int> jobTotalSize(numJob, 0); // æ¯ä¸ªjobæ‰€æœ‰æ•°æ®å—å¤§å°ä¹‹å’Œ
 	_for(i, 0, numJob) {
 		_for(j, 0, location[i].size()) {
 			jobInitLocSet[i].insert(location[i][j]);
@@ -223,15 +224,15 @@ void ResourceScheduler::validFromBlock() {
 	}
 	assert(maxRunningTime >= actualTime);
 
-	// 2. ÑéÖ¤jobCore: ·ÖÅä¸øÃ¿¸öJobµÄºËÊıÓ¦¸ÃÔÚ [1,×ÜºËÊı] ÄÚ
+	// 2. éªŒè¯jobCore: åˆ†é…ç»™æ¯ä¸ªJobçš„æ ¸æ•°åº”è¯¥åœ¨ [1,æ€»æ ¸æ•°] å†…
 	int numCore = accumulate(hostCore.begin(), hostCore.end(), 0);
 	_for(i, 0, numJob)
 		assert(0 < jobCore[i] && jobCore[i] <= numCore);
 
-	// 3. ÑéÖ¤runLoc: Ã¿¸öºËÄÚµÄÊı¾İ¿éÔËĞĞ´ÎĞò²»ÄÜÏàÍ¬, ±ØĞëÊÇ[1,...,n]µÄÒ»¸öÈ«ÅÅÁĞ, nÊÇÕâ¸öºËÉÏ±»µ÷¶ÈµÄÊı¾İ¿é¸öÊı
-	//    Ë³±ã°Ñ´Ó¿éÊÓ½ÇµÄ´ğ°¸×ª»¯Îª´ÓºËÊÓ½ÇµÄ´ğ°¸
+	// 3. éªŒè¯runLoc: æ¯ä¸ªæ ¸å†…çš„æ•°æ®å—è¿è¡Œæ¬¡åºä¸èƒ½ç›¸åŒ, å¿…é¡»æ˜¯[1,...,n]çš„ä¸€ä¸ªå…¨æ’åˆ—, næ˜¯è¿™ä¸ªæ ¸ä¸Šè¢«è°ƒåº¦çš„æ•°æ®å—ä¸ªæ•°
+	//    é¡ºä¾¿æŠŠä»å—è§†è§’çš„ç­”æ¡ˆè½¬åŒ–ä¸ºä»æ ¸è§†è§’çš„ç­”æ¡ˆ
 
-	// ¼ÆËãÃ¿¸öºË±»·ÖÅäÁË¶àÉÙÊı¾İ¿é
+	// è®¡ç®—æ¯ä¸ªæ ¸è¢«åˆ†é…äº†å¤šå°‘æ•°æ®å—
 	vector<vector<int>> hostCoreBlock(numHost);
 	_for(i, 0, numHost)
 		hostCoreBlock[i].resize(hostCore[i], 0);
@@ -246,12 +247,12 @@ void ResourceScheduler::validFromBlock() {
 		}
 	}
 
-	// ³õÊ¼»¯Ö÷»ú-ºËµÄÈÎÎñÁĞ±í³¤¶È
+	// åˆå§‹åŒ–ä¸»æœº-æ ¸çš„ä»»åŠ¡åˆ—è¡¨é•¿åº¦
 	_for(i, 0, numHost)
 		_for(j, 0, hostCore[i])
 		hostCoreTask[i][j].resize(hostCoreBlock[i][j], make_tuple(-1, -1, -1, -1));
 
-	// ³¢ÊÔ½«Ã¿¸öÊı¾İ¿é·ÖÅäµ½Ö÷»ú-ºËµÄÈÎÎñÁĞ±íÖĞ
+	// å°è¯•å°†æ¯ä¸ªæ•°æ®å—åˆ†é…åˆ°ä¸»æœº-æ ¸çš„ä»»åŠ¡åˆ—è¡¨ä¸­
 	_for(i, 0, numJob) {
 		_for(j, 0, jobBlock[i]) {
 			int h = get<0>(runLoc[i][j]);
@@ -260,7 +261,7 @@ void ResourceScheduler::validFromBlock() {
 
 			if (h < 0 || h >= numHost || c<0 || c >= hostCore[h] || r <= 0 || r>hostCoreBlock[h][c])
 				cerr << "Error: Host " << h << " core " << c << " rank " << r << " should not be allocated by job " << i << " block " << j << "\n";
-			else if (get<0>(hostCoreTask[h][c][r - 1]) != -1) // ×¢Òâ r ĞèÒª¼õÒ»
+			else if (get<0>(hostCoreTask[h][c][r - 1]) != -1) // æ³¨æ„ r éœ€è¦å‡ä¸€
 				cerr << "Error: Host " << h << " core " << c << " rank " << r << " is already allocated by job " << get<0>(hostCoreTask[h][c][r - 1])
 				<< " block " << get<1>(hostCoreTask[h][c][r - 1]) << ": " << get<2>(hostCoreTask[h][c][r - 1]) << " ~ " << get<3>(hostCoreTask[h][c][r - 1])
 				<< " when allocate job " << i << " block " << j << "\n";
@@ -269,38 +270,38 @@ void ResourceScheduler::validFromBlock() {
 		}
 	}
 
-	// ¼ÆËãÖ÷»ú-ºËÉÏµÄÔËĞĞÇé¿ö, ¿ÉÒÔ°Ñ´«ÊäÁĞ±ítransferListÒ²Ëã³öÀ´
+	// è®¡ç®—ä¸»æœº-æ ¸ä¸Šçš„è¿è¡Œæƒ…å†µ, å¯ä»¥æŠŠä¼ è¾“åˆ—è¡¨transferListä¹Ÿç®—å‡ºæ¥
 
-	// ³õÊ¼»¯hostCoreFinishTime, Öğ²½Ä£ÄâºËµ±Ç°ÔËĞĞµ½ÁËÄÄ¸öÊ±¼ä
+	// åˆå§‹åŒ–hostCoreFinishTime, é€æ­¥æ¨¡æ‹Ÿæ ¸å½“å‰è¿è¡Œåˆ°äº†å“ªä¸ªæ—¶é—´
 	hostCoreFinishTime.resize(numHost);
 	for (int i = 0; i < numHost; i++)
 		hostCoreFinishTime[i].resize(hostCore[i], 0.0);
 
 	int blockFinished = 0;
 	int numTotalBlock = accumulate(jobBlock.begin(), jobBlock.end(), 0);
-	vector<double> jobStartTime(numJob, 0.0); // ¼ÇÂ¼Ã¿¸öJobµÄ¿ªÊ¼Ê±
+	vector<double> jobStartTime(numJob, 0.0); // è®°å½•æ¯ä¸ªJobçš„å¼€å§‹æ—¶
 
 	while (blockFinished < numTotalBlock) {
-		// 1. ÕÒ×î¶ÌÔËĞĞÊ±¼äµÄºË, ³¢ÊÔµ÷¶ÈÕâ¸öºËÉÏµÄÏÂÒ»¸ö¿é¶ÔÓ¦µÄJobµÄËùÓĞÊı¾İ¿é
-		//    ÅĞ¶Ï²¢¼ÇÂ¼ĞèÒª´«ÊäµÄ¿éµ½transferMapÖĞ
+		// 1. æ‰¾æœ€çŸ­è¿è¡Œæ—¶é—´çš„æ ¸, å°è¯•è°ƒåº¦è¿™ä¸ªæ ¸ä¸Šçš„ä¸‹ä¸€ä¸ªå—å¯¹åº”çš„Jobçš„æ‰€æœ‰æ•°æ®å—
+		//    åˆ¤æ–­å¹¶è®°å½•éœ€è¦ä¼ è¾“çš„å—åˆ°transferMapä¸­
 
-		// 2. ÕÒ×î´óµÄ Õâ¸öjobµÄ Ã¿¸öÊı¾İ¿éËùµ÷¶ÈµÄºËÉÏÍê³ÉÉÏÒ»¸ö±ğµÄjobÊı¾İ¿éµÄ½áÊøÊ±¼ä,
-		//    ½«Õâ¸öÊ±¼ä×÷Îªµ±Ç°JobµÄÆğÊ¼Ê±¼äjobStartTime
+		// 2. æ‰¾æœ€å¤§çš„ è¿™ä¸ªjobçš„ æ¯ä¸ªæ•°æ®å—æ‰€è°ƒåº¦çš„æ ¸ä¸Šå®Œæˆä¸Šä¸€ä¸ªåˆ«çš„jobæ•°æ®å—çš„ç»“æŸæ—¶é—´,
+		//    å°†è¿™ä¸ªæ—¶é—´ä½œä¸ºå½“å‰Jobçš„èµ·å§‹æ—¶é—´jobStartTime
 
-		// 3. Ä£ÄâÍê³Éµ±Ç°JobµÄËùÓĞÊı¾İ¿é
-		//    ¸üĞÂhostCoreTask¡¢hostCoreFinishTime¡¢blockFinished
+		// 3. æ¨¡æ‹Ÿå®Œæˆå½“å‰Jobçš„æ‰€æœ‰æ•°æ®å—
+		//    æ›´æ–°hostCoreTaskã€hostCoreFinishTimeã€blockFinished
 		break;
 	}
 }
 
 void ResourceScheduler::validFromCore() {
-	// 1. hostCoreTaskÉÏÊÇ·ñ°üº¬ËùÓĞJobµÄËùÓĞÊı¾İ¿é¶øÇÒÎŞÖØ¸´, µÃµ½runLoc
+	// 1. hostCoreTaskä¸Šæ˜¯å¦åŒ…å«æ‰€æœ‰Jobçš„æ‰€æœ‰æ•°æ®å—è€Œä¸”æ— é‡å¤, å¾—åˆ°runLoc
 
 
-	// 2. hostCoreTaskÉÏËùÓĞÊı¾İ¿éµÄÔËĞĞÊ±¼ä²»ÄÜÓĞÖØµş, µÃµ½jobStartTimeºÍJobµÄÔËĞĞË³Ğò
+	// 2. hostCoreTaskä¸Šæ‰€æœ‰æ•°æ®å—çš„è¿è¡Œæ—¶é—´ä¸èƒ½æœ‰é‡å , å¾—åˆ°jobStartTimeå’ŒJobçš„è¿è¡Œé¡ºåº
 
 
-	// 3. ¸ù¾İÃ¿¸öJobµÄºËÊı, hostCoreTaskÉÏÃ¿¸öÊı¾İ¿éµÄÔËĞĞÊ±¼äÓ¦¸ÃÔÚºÏÀí³¤¶È
+	// 3. æ ¹æ®æ¯ä¸ªJobçš„æ ¸æ•°, hostCoreTaskä¸Šæ¯ä¸ªæ•°æ®å—çš„è¿è¡Œæ—¶é—´åº”è¯¥åœ¨åˆç†é•¿åº¦
 
 
 }
