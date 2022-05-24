@@ -22,6 +22,7 @@ public:
 	int caseID;   // 1
 	int numJob; // No. 0 ~ numJob-1
 	int numHost;// No. 0 ~ numHost-1
+	int numCore;
 	double St;  // Speed of Transimision
 	double alpha;   // g(e)=1-alpha(e-1) alpha>0, e is the number of cores allocated to a single job
 	vector<int> hostCore;              // The number of cores for each host
@@ -33,7 +34,8 @@ public:
 	vector<double> jobFinishTime;                 // The finish time of each job
 	vector<int> jobCore;                       // The number of cores allocated to each job.
 	vector<vector<tuple<int, int, int>>> runLoc;
-	// Block perspective: job number->block number->(hostID, coreID,rank), rank=1 means that block is the first task running on that core of that host
+	// Block perspective: job number->block number->(hostID, coreID,rank), rank=1 means that block is
+	// the first task running on that core of that host
 
 	vector<vector<vector<tuple<int, int, double, double>>>> hostCoreTask;
 	// Core perspective: host->core->task-> <job,block,startRunningTime,endRunningTime>
@@ -43,6 +45,8 @@ public:
 	// Transmission situation: (job, block) --> (initHost, destinationHost, propagation time)
 
 	ResourceScheduler(int,int, int);
+	void get_sched(struct sol*);
+	double __schedule(struct sol*);
 	void schedule();
 	void outputSolutionFromBlock();
 	void outputSolutionFromCore();
@@ -50,4 +54,5 @@ public:
 	void validFromCore();
 	void visualization(); // An optional function.
 	double g(int);
+	void init_rand_sol(struct sol*);
 };
