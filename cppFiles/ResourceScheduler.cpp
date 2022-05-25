@@ -184,7 +184,7 @@ void ResourceScheduler::get_sched(struct sol* cur_sol)
             tem.amt = endtime;
             LocalCoreQueue.push(tem);
             runLoc[cur_index][idx[j]] = make_tuple(tem.idh,tem.idx,++hostCoreBlock[tem.idh][tem.idx]);
-            hostCoreTask[tem.idh][tem.idx].push_back(make_tuple(cur_index,idx[j],starttime,endtime));
+            hostCoreTask[tem.idh][tem.idx].push_back(make_tuple(cur_index,idx[j],starttime+group_start,endtime+group_start));
             transferMap[cur_index][idx[j]] = make_tuple(location[cur_index][idx[j]],tem.idh,transTime);
         }
 
@@ -582,25 +582,39 @@ void ResourceScheduler::outputSolutionFromBlock() {
 
 // 以核的视角打印解决方案
 void ResourceScheduler::outputSolutionFromCore() {
-	cout << "\nTask" << taskType << " Solution (Core Perspective) of Teaching Assistant:\n\n";
+	cout << "\nTask" << taskType << " Solution (Core Perspective) of Our team:\n\n";
 	double maxHostTime = 0, totalRunningTime = 0.0;
 	for (int i = 0; i < numHost; i++) {
+        // calculation!
 		double hostTime = *max_element(hostCoreFinishTime[i].begin(), hostCoreFinishTime[i].end());
+		double HostFinishTime = 0.0;
+		vector<double> CoreFinishTime;
+		CoreFinishTime.resize(hostCore[i],0.0);
 		maxHostTime = max(hostTime, maxHostTime);
-		totalRunningTime += accumulate(hostCoreFinishTime[i].begin(), hostCoreFinishTime[i].end(), 0.0);
-		cout << "Host" << i << " finishes at time " << hostTime << ":\n\n";
-		for (int j = 0; j < hostCore[i]; j++) {
-			cout << "\tCore" << j << " has " << hostCoreTask[i][j].size() << " tasks and finishes at time " << hostCoreFinishTime[i][j] << ":\n";
+        for (int j = 0; j < hostCore[i]; j++) {
 			for (int k = 0; k < hostCoreTask[i][j].size(); k++) {
-				cout << "\t\tJ" << setw(2) << setfill('0') << get<0>(hostCoreTask[i][j][k]) << ", B" << setw(2) << setfill('0') << get<1>(hostCoreTask[i][j][k]) << ", runTime " << fixed << setprecision(1) << setw(5) << setfill('0') << get<2>(hostCoreTask[i][j][k]) << " to " << fixed << setprecision(1) << setw(5) << setfill('0') << get<3>(hostCoreTask[i][j][k]) << "\n";
+				CoreFinishTime[j] = get<3>(hostCoreTask[i][j][k]);
+				totalRunningTime += get<3>(hostCoreTask[i][j][k]) - get<2>(hostCoreTask[i][j][k]);
+			}
+		}
+		HostFinishTime = *max_element(CoreFinishTime.begin(),CoreFinishTime.end());
+		// output!
+		cout << fixed << setprecision(2) << "Host" << i << " finishes its jobs at "<< HostFinishTime <<", and is released at " << hostTime << ":\n\n";
+		for (int j = 0; j < hostCore[i]; j++) {
+			cout << fixed << setprecision(2)  << "\tCore" << j << " has " << hostCoreTask[i][j].size() << " tasks. It finishes its jobs at " << CoreFinishTime[j] << \
+			", and is released at " << hostCoreFinishTime[i][j] << ":\n";
+			for (int k = 0; k < hostCoreTask[i][j].size(); k++) {
+				cout << fixed << setprecision(1) << "\t\tJ" << setw(2) << setfill('0') << get<0>(hostCoreTask[i][j][k]) << \
+				", B" << fixed << setprecision(1) << setw(2) << setfill('0') << get<1>(hostCoreTask[i][j][k]) << ", runTime " << setw(5) << setfill('0') << get<2>(hostCoreTask[i][j][k]) << \
+				" to " << fixed << setprecision(1) << setw(5) << setfill('0') << get<3>(hostCoreTask[i][j][k]) << "\n";
 			}
 			cout << "\n";
 		}
 		cout << "\n\n";
 	}
-	cout << "The maximum finish time of hosts: " << maxHostTime << "\n";
-	cout << "The total efficacious running time: " << totalRunningTime << "\n";
-	cout << "Utilization rate: " << totalRunningTime / accumulate(hostCore.begin(), hostCore.end(), 0.0) / maxHostTime << "\n\n";
+	cout << "The overall finish time is: " << fixed << setprecision(2) << maxHostTime << "\n";
+	cout << "The total efficacious running time: " << fixed << setprecision(2) << totalRunningTime << "\n";
+	cout << "Utilization rate: " << fixed << setprecision(2) << totalRunningTime / numCore / maxHostTime << "\n\n";
 }
 
 // 从数据块的视角进行验证
