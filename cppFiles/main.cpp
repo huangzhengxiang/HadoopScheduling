@@ -8,11 +8,11 @@
 #include "Util.h"
 
 int main() {
-	freopen("output/task_1_case_1.txt", "w", stdout);
-    // Needs to ensure there is a file named "task_$taskType_case_$caseID.txt" in 'input' filefolder.
+    srand(time(0));
+	// Needs to ensure there is a file named "task_$taskType_case_$caseID.txt" in 'input' filefolder.
 	// You can test more cases if you want.
-	//scheduler = [0: test, 1: greedy approximation, 2: modified greedy]
-	int scheduler = 1,taskType = 1, caseID = 1;
+	//scheduler = [0: test, 1: greedy approximation, 2: modified greedy, 3: stochastic greedy search with random wlk]
+	int scheduler = 3,taskType = 2, caseID = 2;
 
 	// Load data from file "task_$taskType_case_$caseID.txt" to class ResourceScheduler instance object.
 	ResourceScheduler rs(scheduler,taskType, caseID);
@@ -24,8 +24,8 @@ int main() {
 	rs.schedule();
 	rs.outputSolutionFromCore();
 	rs.outputSolutionFromBlock();
-
-	// rs.validFromBlock(); // Not necessary && Not Sufficient.
+	rs.visualization();
+//	rs.validFromBlock();
 
 	return 0;
 }
