@@ -5,11 +5,12 @@
 #define mfor(i,a,b) for(int i=(a);i>(b);--i)
 #define mmfor(i,a,b) for(int i=(a);i>=(b);--i)
 
+using namespace std;
 //MAX_CORE
 #define MAX_CORE 10
 // SLS iteration control
-#define MAX_TRY 80
-#define MAX_FLIP 200
+#define MAX_TRY 100
+#define MAX_FLIP 500
 //infinity
 #define INF 0x3f3f3f3f
 //Random Walk
@@ -82,15 +83,19 @@ bool operator>(const cmp &a,const cmp &b)
 ResourceScheduler::ResourceScheduler(int scheduler,int tasktype, int caseID) {
 	taskType = tasktype;
 	Scheduler = scheduler;
-	string filePath = "../input/task" + to_string(taskType) + "_case" + to_string(caseID) + ".txt";
-	freopen(filePath.c_str(), "r", stdin);
+	numCore = 0;
+//	string filePath = "task" + to_string(taskType) + "_case" + to_string(caseID) + ".txt";
+//    freopen(filePath, "r", stdin);
+//	freopen("test2.txt", "r", stdin);
 	cin >> numJob >> numHost >> alpha;
 	if (taskType == 2)
 		cin >> St;
 
 	hostCore.resize(numHost);
-	for (int i = 0; i < numHost; i++)
-		cin >> hostCore[i];
+	for (int i = 0; i < numHost; i++){
+        cin >> hostCore[i];
+        numCore += hostCore[i];
+	}
 
 	jobBlock.resize(numJob);
 	for (int i = 0; i < numJob; i++)
@@ -129,6 +134,11 @@ ResourceScheduler::ResourceScheduler(int scheduler,int tasktype, int caseID) {
 	for (int i = 0; i < numHost; i++)
 		hostCoreFinishTime[i].resize(hostCore[i], 0);
 }
+
+double ResourceScheduler::g(int e) {
+	return 1 - (double)alpha * (e - 1);
+}
+
 void ResourceScheduler::get_sched(struct sol* cur_sol)
 {
     /* We only record the scheduling answer for the best answer!
@@ -303,12 +313,6 @@ void ResourceScheduler::init_rand_sol(struct sol* cur_sol)
 }
 
 void ResourceScheduler::schedule() {
-    /* scheduling methods
-     * 0: TA's randomized one
-     * 1: Greedy approximation specially designed for task 1
-     * 2: comprehensive single core greedy approximation
-     * 3: stochastic greedy local search with random walk
-     */
     if(Scheduler==1){
         vector<double> jobTime;
         jobTime.resize(numJob,0);
@@ -407,7 +411,6 @@ void ResourceScheduler::schedule() {
             hostCoreFinishTime[hid][cid] = coreSelection.amt;
             CoreQueue.push(coreSelection);
         }
-
     }
     if(Scheduler==3){
         double best_time = INF;
@@ -518,7 +521,8 @@ void ResourceScheduler::schedule() {
 //        cout << best_time << endl;
     }
     if(Scheduler==0)
-    {   // 以下代码是为了测试，不是合理方案
+    {
+        // 以下代码是为了测试，不是合理方案
 
         vector<vector<int>> hostCoreBlock(numHost);
         for (int i = 0; i < numHost; i++)
@@ -571,7 +575,8 @@ void ResourceScheduler::outputSolutionFromBlock() {
 		double speed = g(jobCore[i]) * Sc[i];
 		cout << "Job" << i << " obtains " << jobCore[i] << " cores (speed=" << speed << ") and finishes at time " << jobFinishTime[i] << ": \n";
 		for (int j = 0; j < jobBlock[i]; j++) {
-			cout << "\tBlock" << j << ": H" << get<0>(runLoc[i][j]) << ", C" << get<1>(runLoc[i][j]) << ", R" << get<2>(runLoc[i][j]) << " (time=" << fixed << setprecision(2) << dataSize[i][j] / speed << ")" << " \n";
+			cout << "\tBlock" << j << ": H" << get<0>(runLoc[i][j]) << ", C" << get<1>(runLoc[i][j]) << ", R" << \
+                get<2>(runLoc[i][j]) << " (time=" << fixed << setprecision(2) << dataSize[i][j] / speed << ")" << " \n";
 		}
 		cout << "\n";
 	}
@@ -580,7 +585,6 @@ void ResourceScheduler::outputSolutionFromBlock() {
 	cout << "The sum of response time: " << accumulate(jobFinishTime.begin(), jobFinishTime.end(), 0.0) << "\n\n";
 }
 
-// 以核的视角打印解决方案
 void ResourceScheduler::outputSolutionFromCore() {
 	cout << "\nTask" << taskType << " Solution (Core Perspective) of Our team:\n\n";
 	double maxHostTime = 0, totalRunningTime = 0.0;
@@ -776,8 +780,4 @@ void ResourceScheduler::visualization() {
         maxHostTime = max(maxHostTime, HostTime);
     }
     cout << maxHostTime << endl;
-}
-
-double ResourceScheduler::g(int e) {
-	return 1 - alpha * (e - 1);
 }
