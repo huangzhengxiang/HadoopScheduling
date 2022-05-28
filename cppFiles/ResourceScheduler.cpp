@@ -721,7 +721,61 @@ void ResourceScheduler::validFromCore() {
 }
 
 void ResourceScheduler::visualization() {
-
+    cout << numJob << endl;
+    cout << numHost << endl;
+    vector<vector<int>> Coreindex;
+    Coreindex.resize(numHost);
+    for(int i=0;i < numHost;++i){
+        cout << hostCore[i] << ' ';
+        Coreindex[i].resize(hostCore[i],0);
+        if(i == 0){
+            for(int j = 0;j<hostCore[i];++j){
+                Coreindex[i][j] = j;
+            }
+        }else
+        {
+            for(int j = 0;j<hostCore[i];++j){
+                Coreindex[i][j] = Coreindex[i-1].back() + 1 + j;
+            }
+        }
+    }
+    cout << endl;
+    for(int i = 0;i<numJob;++i){
+        cout << jobBlock[i] << ' ';
+    }
+    cout << endl;
+    for(int i = 0;i<numJob;++i){
+        for(int j=0;j<jobBlock[i];++j){
+            int cur_host = get<0>(runLoc[i][j]);
+            int cur_core = get<1>(runLoc[i][j]);
+            cout << Coreindex[cur_host][cur_core] << ' ';
+        }
+        cout << endl;
+    }
+    for(int i = 0;i<numJob;++i){
+        for(int j=0;j<jobBlock[i];++j){
+            int cur_host = get<0>(runLoc[i][j]);
+            int cur_core = get<1>(runLoc[i][j]);
+            int cur_rank = get<2>(runLoc[i][j]) - 1;
+            cout << get<3>(hostCoreTask[cur_host][cur_core][cur_rank]) - get<2>(hostCoreTask[cur_host][cur_core][cur_rank]) << ' ';
+        }
+        cout << endl;
+    }
+    for(int i = 0;i<numJob;++i){
+        for(int j=0;j<jobBlock[i];++j){
+            int cur_host = get<0>(runLoc[i][j]);
+            int cur_core = get<1>(runLoc[i][j]);
+            int cur_rank = get<2>(runLoc[i][j]) - 1;
+            cout << get<2>(hostCoreTask[cur_host][cur_core][cur_rank]) << ' ';
+        }
+        cout << endl;
+    }
+    double maxHostTime = 0;
+    for(int i = 0;i < numHost;++i){
+        double HostTime =  *max_element(hostCoreFinishTime[i].begin(), hostCoreFinishTime[i].end());
+        maxHostTime = max(maxHostTime, HostTime);
+    }
+    cout << maxHostTime << endl;
 }
 
 double ResourceScheduler::g(int e) {
